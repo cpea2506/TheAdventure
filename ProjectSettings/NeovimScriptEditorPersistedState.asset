@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Unity.Neovim.Editor:Packages.Neovim.Editor:NeovimScriptEditorPersistedState
-  lastWriteTicks: -8585177328205697530
+  lastWriteTicks: -8585176490390241040
