@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 14424078083732917}
   - component: {fileID: 14424078083732919}
   - component: {fileID: 14424078083732916}
-  - component: {fileID: 3004036043099288945}
+  - component: {fileID: 6301850074932697454}
   m_Layer: 0
-  m_Name: BulletBillExplosion
+  m_Name: BulletBillExplosion FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4883,7 +4883,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3004036043099288945
+--- !u!114 &6301850074932697454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

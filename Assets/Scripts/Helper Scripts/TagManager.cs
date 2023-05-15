@@ -8,7 +8,7 @@ public class TagManager
 
     public static string RUN_ANIMATION_PARAMETER = "Speed";
     public static string JUMP_ANIMATION_PARAMETER = "Grounded";
-    public static string MOVE_ANIMATION_PARAMETER = "isMoving";
+    public static string MOVE_ANIMATION_PARAMETER = "IsMoving";
     public static string ATTACK_ANIMATION_PARAMETER = "Attack";
 
     public static string PLAYER_TAG = "Player";
