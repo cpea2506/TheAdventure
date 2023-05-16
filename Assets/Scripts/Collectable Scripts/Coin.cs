@@ -14,6 +14,7 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag(TagManager.PLAYER_TAG))
         {
+            AudioManager.instance.PlaySound(SFX.CoinPickUp);
             Instantiate(pickUpFx, transform.position, Quaternion.identity);
         }
 

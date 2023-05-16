@@ -59,6 +59,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float rotateSpeed = 5f;
 
+    private bool isKnockedBack;
+
+    [SerializeField]
+    private float knockedBackPower = 3f;
+
+    [SerializeField]
+    private float knockedBackDuration = 0.5f;
+
+    private float knockedBackTimer;
+
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
@@ -69,8 +79,17 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         GroundCheck();
-        HorizontalMovement();
-        VerticalMovement();
+
+        if (isKnockedBack)
+        {
+            CalculateKnockBackMotion();
+        }
+        else
+        {
+            HorizontalMovement();
+            VerticalMovement();
+        }
+
         Jump();
         Animate();
     }
@@ -80,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         IsGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadious, whatIsGround);
     }
 
-    void HorizontalMovement()
+    private void HorizontalMovement()
     {
         float horizontalInput = Input.GetAxis(TagManager.HORIZONTAL_AXIS);
         float verticalInput = Input.GetAxis(TagManager.VERTICAL_AXIS);
@@ -93,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         Rotate(horizontalInput, verticalInput);
     }
 
-    void VerticalMovement()
+    private void VerticalMovement()
     {
         if (IsGrounded && verticalVelocity.y < 0f)
         {
@@ -107,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         playerController.Move(verticalVelocity * Time.deltaTime);
     }
 
-    void Rotate(float horizontalInput, float verticalInput)
+    private void Rotate(float horizontalInput, float verticalInput)
     {
         if (horizontalInput != 0 || verticalInput != 0)
         {
@@ -120,23 +139,40 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Jump()
+    private void Jump()
     {
         if (IsGrounded && Input.GetButtonDown(jumpButton))
         {
             CanDoubleJump = true;
             verticalVelocity.y = Mathf.Sqrt(-2 * jumpHeight * gravityScale);
+
+            AudioManager.instance.PlaySound(SFX.Jump);
         }
         else if (Input.GetButtonDown(jumpButton) && CanDoubleJump)
         {
             CanDoubleJump = false;
             verticalVelocity.y = Mathf.Sqrt(-2 * jumpHeight * gravityScale);
+
+            AudioManager.instance.PlaySound(SFX.Jump);
         }
     }
 
-    void Animate()
+    private void Animate()
     {
         playerAnimation.PlayRun(Mathf.Abs(movementDirection.x) + Mathf.Abs(movementDirection.z));
         playerAnimation.PlayJump(IsGrounded);
+    }
+
+    private void CalculateKnockBackMotion()
+    {
+        knockedBackTimer -= Time.deltaTime;
+        isKnockedBack = knockedBackTimer > 0f;
+        movementDirection = playerController.transform.forward * -knockedBackPower;
+    }
+
+    public void KnockBack()
+    {
+        isKnockedBack = true;
+        knockedBackTimer = knockedBackDuration;
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FallingBlock : MonoBehaviour
@@ -47,9 +45,11 @@ public class FallingBlock : MonoBehaviour
 
                 if (transform.position == endPos)
                 {
+                    AudioManager.instance.PlaySound(SFX.CrateCollide);
                     state = State.Reset;
                     fallTime = 0f;
                 }
+
                 break;
             case State.Reset:
                 fallTime += Time.deltaTime / resetDuration;

@@ -61,7 +61,10 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.PlaySound(SFX.TakeDamage);
+
             invisibleTimer = invisibleDuration;
+            playerMovement.KnockBack();
         }
     }
 
@@ -70,13 +73,16 @@ public class HealthManager : MonoBehaviour
         if (health < maxHealth)
         {
             health += 1;
+
         }
+
+        AudioManager.instance.PlaySound(SFX.HeartPickup);
     }
 
     private void PlayerDied()
     {
         robot.SetActive(false);
-
+        AudioManager.instance.PlaySound(SFX.Death);
         Instantiate(deathFx, transform.position, Quaternion.identity);
     }
 }
