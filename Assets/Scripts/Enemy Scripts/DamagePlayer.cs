@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamagePlayer : MonoBehaviour
@@ -11,14 +9,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.CompareTag(TagManager.PLAYER_TAG))
         {
-            if (isDeathZone)
-            {
-
-            }
-            else
-            {
-                Debug.Log("Hahah, stupid!");
-            }
+            other.GetComponent<HealthManager>().DamagePlayer(isDeathZone ? 100 : 1);
         }
     }
 }
