@@ -8,6 +8,7 @@ public enum SFX
     Jump,
     Death,
     CrateCollide,
+    Pipe,
 }
 
 public class AudioManager : MonoBehaviour
@@ -25,9 +26,9 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(SFX soundFx)
+    public void PlaySound(SFX soundFx, float volumeScale = 1f)
     {
         audioSource.clip = sfxSounds[(int)soundFx];
-        audioSource.PlayOneShot(audioSource.clip);
+        audioSource.PlayOneShot(audioSource.clip, volumeScale);
     }
 }

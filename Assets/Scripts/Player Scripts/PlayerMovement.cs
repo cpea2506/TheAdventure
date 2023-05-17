@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float knockedBackTimer;
 
+    private bool insideThePipe = true;
+
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
@@ -78,6 +80,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (insideThePipe)
+        {
+            verticalVelocity.y = Mathf.Sqrt(-2 * jumpHeight * gravityScale);
+            insideThePipe = false;
+            AudioManager.instance.PlaySound(SFX.Pipe, 0.1f);
+        }
+
+        if (GameplayManager.instance.playerDied)
+        {
+            return;
+        }
+
         GroundCheck();
 
         if (isKnockedBack)

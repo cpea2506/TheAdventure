@@ -57,6 +57,7 @@ public class HealthManager : MonoBehaviour
 
         if (health <= 0)
         {
+            GameplayManager.instance.GameOver();
             PlayerDied();
         }
         else
@@ -65,6 +66,8 @@ public class HealthManager : MonoBehaviour
 
             invisibleTimer = invisibleDuration;
             playerMovement.KnockBack();
+
+            GameplayManager.instance.SetHealthCount(-1);
         }
     }
 
@@ -73,6 +76,7 @@ public class HealthManager : MonoBehaviour
         if (health < maxHealth)
         {
             health += 1;
+            GameplayManager.instance.SetHealthCount(1);
 
         }
 

@@ -50,6 +50,13 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.playerDied)
+        {
+            navMeshAgent.isStopped = true;
+            Idle(10000);
+            return;
+        }
+
         float distanceToPlayer = Vector3.Distance(playerTarget.position, navMeshAgent.transform.position);
 
         switch (skeletonState)
@@ -132,6 +139,7 @@ public class Skeleton : MonoBehaviour
             animator.SetBool(TagManager.MOVE_ANIMATION_PARAMETER, isMoving);
         }
     }
+
     private void Chase(float distanceToPlayer)
     {
         LookAtSlerp(playerTarget);
@@ -162,8 +170,8 @@ public class Skeleton : MonoBehaviour
         }
 
         animator.SetBool(TagManager.MOVE_ANIMATION_PARAMETER, isMoving);
-
     }
+
     private void Attack(float distanceToPlayer)
     {
         LookAtSlerp(playerTarget);
