@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis(TagManager.HORIZONTAL_AXIS);
         float verticalInput = Input.GetAxis(TagManager.VERTICAL_AXIS);
 
-        movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection = new Vector3(horizontalInput, 0f, verticalInput);
         movementDirection = transform.TransformDirection(movementDirection);
 
         playerController.Move(movementDirection * movementSpeed * Time.deltaTime);
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (horizontalInput != 0 || verticalInput != 0)
         {
-            transform.rotation = Quaternion.Euler(0f, mainCamera.transform.rotation.eulerAngles.y, 0f);
+            transform.rotation = Quaternion.Euler(0f, mainCamera.transform.eulerAngles.y, 0f);
 
             model.transform.rotation = Quaternion.Slerp(
                     model.transform.rotation,

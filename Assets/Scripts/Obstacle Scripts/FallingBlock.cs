@@ -45,7 +45,7 @@ public class FallingBlock : MonoBehaviour
 
                 if (transform.position == endPos)
                 {
-                    AudioManager.instance.PlaySound(SFX.CrateCollide);
+                    AudioManager.instance.PlaySound(SFX.CrateCollide, 0.1f);
                     state = State.Reset;
                     fallTime = 0f;
                 }
