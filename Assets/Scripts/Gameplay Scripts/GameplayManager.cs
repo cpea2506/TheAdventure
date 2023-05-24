@@ -55,7 +55,7 @@ public class GameplayManager : MonoBehaviour
             healthUI[healthCount].SetActive(false);
             healthCount += value;
         }
-        else if (healthCount > 0)
+        else
         {
             healthCount += value;
             healthUI[healthCount].SetActive(true);

@@ -88,5 +88,10 @@ public class HealthManager : MonoBehaviour
         robot.SetActive(false);
         AudioManager.instance.PlaySound(SFX.Death);
         Instantiate(deathFx, transform.position, Quaternion.identity);
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameplayManager.instance.SetHealthCount(-1);
+        }
     }
 }
