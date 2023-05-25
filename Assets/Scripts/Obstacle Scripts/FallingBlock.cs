@@ -37,7 +37,7 @@ public class FallingBlock : MonoBehaviour
 
     private void Update()
     {
-        if (GameplayManager.instance.playerDied)
+        if (GameplayManager.instance.gameState != GameState.InGame)
         {
             return;
         }

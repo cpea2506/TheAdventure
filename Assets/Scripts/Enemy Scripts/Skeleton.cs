@@ -63,7 +63,7 @@ public class Skeleton : MonoBehaviour
 
     private void Update()
     {
-        if (GameplayManager.instance.playerDied)
+        if (GameplayManager.instance.gameState == GameState.GameOver)
         {
             navMeshAgent.isStopped = true;
             Idle(10000);

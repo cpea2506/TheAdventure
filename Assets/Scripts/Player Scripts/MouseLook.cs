@@ -26,7 +26,7 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        if (GameplayManager.instance.playerDied)
+        if (GameplayManager.instance.gameState != GameState.InGame)
         {
             freeLook.enabled = false;
             return;

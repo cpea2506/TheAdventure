@@ -17,7 +17,8 @@ public class Platform : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameplayManager.instance.playerDied) {
+        if (GameplayManager.instance.gameState != GameState.InGame)
+        {
             return;
         }
 
