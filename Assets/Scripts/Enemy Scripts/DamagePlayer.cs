@@ -9,7 +9,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.CompareTag(TagManager.PLAYER_TAG))
         {
-            other.GetComponent<HealthManager>().DamagePlayer(isDeathZone ? 100 : 1);
+            other.GetComponent<HealthManager>().DamagePlayer(isDeathZone ? 3 : 1);
         }
     }
 }

@@ -77,7 +77,6 @@ public class HealthManager : MonoBehaviour
         {
             health += 1;
             GameplayManager.instance.SetHealthCount(1);
-
         }
 
         AudioManager.instance.PlaySound(SFX.HeartPickup);
@@ -89,7 +88,7 @@ public class HealthManager : MonoBehaviour
         AudioManager.instance.PlaySound(SFX.Death);
         Instantiate(deathFx, transform.position, Quaternion.identity);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0, healthCount = GameplayManager.instance.HealthCount; i <= healthCount; i++)
         {
             GameplayManager.instance.SetHealthCount(-1);
         }

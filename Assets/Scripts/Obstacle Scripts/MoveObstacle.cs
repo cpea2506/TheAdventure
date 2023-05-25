@@ -31,6 +31,11 @@ public class MoveObstacle : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.playerDied)
+        {
+            return;
+        }
+
         MoveSaw();
     }
 

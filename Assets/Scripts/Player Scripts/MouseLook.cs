@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MouseLook : MonoBehaviour
 {
@@ -17,6 +16,9 @@ public class MouseLook : MonoBehaviour
     private Vector2 inputValue;
     private Vector3 tempAngles = Vector3.zero;
 
+    [SerializeField]
+    private CinemachineFreeLook freeLook;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,6 +26,12 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
+        if (GameplayManager.instance.playerDied)
+        {
+            freeLook.enabled = false;
+            return;
+        }
+
         GetPlayerInput();
 
         LookAtX();

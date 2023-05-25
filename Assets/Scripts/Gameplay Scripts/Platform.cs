@@ -17,6 +17,10 @@ public class Platform : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameplayManager.instance.playerDied) {
+            return;
+        }
+
         timer += Time.deltaTime / timeToReach;
         transform.position = Vector3.Lerp(starPos, endPos, timer);
 

@@ -12,6 +12,12 @@ public class GameplayManager : MonoBehaviour
     private TextMeshProUGUI coinText;
 
     [SerializeField]
+    private GameOverScreen gameOverScreen;
+
+    [SerializeField]
+    private Canvas gameplayCanvas;
+
+    [SerializeField]
     private GameObject[] healthUI;
 
     [SerializeField]
@@ -25,19 +31,18 @@ public class GameplayManager : MonoBehaviour
         healthCount = initialHealth;
     }
 
+    private void Update()
+    {
+        if (playerDied)
+        {
+            gameplayCanvas.enabled = false;
+            gameOverScreen.Setup();
+        }
+    }
+
     public void GameOver()
     {
         playerDied = true;
-    }
-
-    private void RestartGame()
-    {
-        Invoke("NewGame", 2f);
-    }
-
-    private void NewGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void SetCoinCount(int value)
@@ -46,7 +51,7 @@ public class GameplayManager : MonoBehaviour
         coinText.text = coinCount.ToString();
     }
 
-    public int GetCoinCount() => coinCount;
+    public int CoinCount => coinCount;
 
     public void SetHealthCount(int value)
     {
@@ -61,4 +66,6 @@ public class GameplayManager : MonoBehaviour
             healthUI[healthCount].SetActive(true);
         }
     }
+
+    public int HealthCount => healthCount;
 }
