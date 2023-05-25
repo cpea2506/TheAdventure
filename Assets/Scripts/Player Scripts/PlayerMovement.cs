@@ -78,6 +78,16 @@ public class PlayerMovement : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(TagManager.ENEMY_TAG))
+        {
+            AudioManager.instance.PlaySound(SFX.Jump);
+            verticalVelocity.y = Mathf.Sqrt(-2 * jumpHeight * gravityScale);
+            verticalVelocity.x = 0.3f;
+        }
+    }
+
     private void Update()
     {
         if (insideThePipe)

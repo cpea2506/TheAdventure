@@ -42,10 +42,23 @@ public class Skeleton : MonoBehaviour
     private float waitAtPointTimer, attackDelayTimer;
     private Transform playerTarget;
 
+    [SerializeField]
+    private GameObject deathFx;
+
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         playerTarget = GameObject.FindWithTag(TagManager.PLAYER_TAG).transform;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(TagManager.PLAYER_TAG))
+        {
+            AudioManager.instance.PlaySound(SFX.EnemyDeath);
+            Instantiate(deathFx, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     private void Update()

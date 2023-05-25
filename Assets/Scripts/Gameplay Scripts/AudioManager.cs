@@ -9,6 +9,7 @@ public enum SFX
     Death,
     CrateCollide,
     Pipe,
+    EnemyDeath,
 }
 
 public class AudioManager : MonoBehaviour
